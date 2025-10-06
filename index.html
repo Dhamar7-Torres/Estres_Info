@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Minds: Tu Guía Anti-Estrés</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 152, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(3, 169, 244, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .circuit-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1565c0;
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #29b6f6;
+            font-size: 1.5em;
+            font-weight: 300;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .svg-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .svg-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 L30 10 L30 20 M30 10 L50 10 M50 10 L50 30 L70 30 M70 30 L90 30 L90 50" stroke="%23e0e0e0" stroke-width="1" fill="none"/><circle cx="10" cy="10" r="2" fill="%23e0e0e0"/><circle cx="30" cy="10" r="2" fill="%23e0e0e0"/><circle cx="50" cy="10" r="2" fill="%23e0e0e0"/><circle cx="50" cy="30" r="2" fill="%23e0e0e0"/><circle cx="70" cy="30" r="2" fill="%23e0e0e0"/><circle cx="90" cy="30" r="2" fill="%23e0e0e0"/><circle cx="90" cy="50" r="2" fill="%23e0e0e0"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        #bodySvg {
+            width: 100%;
+            height: auto;
+            max-height: 700px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .body-part {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .body-part:hover {
+            filter: drop-shadow(0 0 8px rgba(255, 152, 0, 0.6));
+        }
+
+        .body-part.selected {
+            filter: drop-shadow(0 0 15px rgba(255, 87, 34, 0.9));
+        }
+
+        .info-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-content {
+            background: white;
+            border: 3px solid #ff6f3c;
+            border-radius: 15px;
+            padding: 25px;
+            min-height: 250px;
+        }
+
+        .info-content h2 {
+            color: #1565c0;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ff6f3c;
+            padding-bottom: 10px;
+        }
+
+        .info-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-content li {
+            color: #424242;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-content li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #ff6f3c;
+            font-weight: bold;
+        }
+
+        .test-button {
+            background: linear-gradient(135deg, #29b6f6 0%, #0288d1 100%);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(41, 182, 246, 0.4);
+            font-weight: 600;
+        }
+
+        .test-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(41, 182, 246, 0.6);
+        }
+
+        .test-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .test-section.active {
+            display: block;
+        }
+
+        .test-section h2 {
+            color: #1565c0;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .question {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .question h3 {
+            color: #1565c0;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .option {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .option input[type="radio"] {
+            display: none;
+        }
+
+        .option label {
+            display: block;
+            padding: 12px 20px;
+            background: #e3f2fd;
+            border: 2px solid #90caf9;
+            border-radius: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #1565c0;
+            font-weight: 500;
+        }
+
+        .option input[type="radio"]:checked + label {
+            background: linear-gradient(135deg, #ff6f3c 0%, #ff5722 100%);
+            color: white;
+            border-color: #ff5722;
+            transform: scale(1.05);
+        }
+
+        .option label:hover {
+            background: #bbdefb;
+            transform: translateY(-2px);
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #ff6f3c 0%, #ff5722 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.4em;
+            border-radius: 30px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 87, 34, 0.6);
+        }
+
+        .result-container {
+            background: white;
+            border: 3px solid #ff6f3c;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .result-container.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-container h3 {
+            color: #1565c0;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .result-score {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ff6f3c;
+            margin: 20px 0;
+        }
+
+        .result-level {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .result-message {
+            color: #424242;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 25px;
+            border-radius: 20px;
+            color: #1565c0;
+            font-size: 1.1em;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .options {
+                flex-direction: column;
+            }
+
+            .option {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg class="circuit-pattern" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="circuit" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <path d="M20 20 L60 20 L60 40 M60 20 L100 20 M100 20 L100 60 L140 60 M140 60 L180 60 L180 100" 
+                      stroke="#90caf9" stroke-width="2" fill="none"/>
+                <circle cx="20" cy="20" r="3" fill="#29b6f6"/>
+                <circle cx="60" cy="20" r="3" fill="#29b6f6"/>
+                <circle cx="100" cy="20" r="3" fill="#29b6f6"/>
+                <circle cx="100" cy="60" r="3" fill="#29b6f6"/>
+                <circle cx="140" cy="60" r="3" fill="#29b6f6"/>
+                <circle cx="180" cy="60" r="3" fill="#29b6f6"/>
+                <circle cx="180" cy="100" r="3" fill="#29b6f6"/>
+                
+                <path d="M180 140 L140 140 L140 160 M140 140 L100 140 M100 140 L100 180" 
+                      stroke="#90caf9" stroke-width="2" fill="none"/>
+                <circle cx="180" cy="140" r="3" fill="#ff6f3c"/>
+                <circle cx="140" cy="140" r="3" fill="#ff6f3c"/>
+                <circle cx="100" cy="140" r="3" fill="#ff6f3c"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#circuit)"/>
+    </svg>
+
+    <div class="container">
+        <header>
+            <h1>Healthy Minds: Tu Guía Anti-Estrés</h1>
+            <p class="subtitle">Explora, aprende, ¡y toma control!</p>
+        </header>
+
+        <div class="main-content">
+            <div class="svg-container">
+                <svg id="bodySvg" viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4fc3f7;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#0288d1;stop-opacity:0.9" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Head -->
+                    <g id="head" class="body-part">
+                        <ellipse cx="150" cy="60" rx="35" ry="45" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                        <path d="M 140 70 Q 150 75 160 70" stroke="#1565c0" stroke-width="2" fill="none"/>
+                    </g>
+                    
+                    <!-- Eyes (clickable separately) -->
+                    <g id="eyes" class="body-part">
+                        <ellipse cx="140" cy="55" rx="5" ry="6" fill="white" stroke="#1565c0" stroke-width="1.5"/>
+                        <ellipse cx="160" cy="55" rx="5" ry="6" fill="white" stroke="#1565c0" stroke-width="1.5"/>
+                        <circle cx="140" cy="55" r="2.5" fill="#ff6f3c"/>
+                        <circle cx="160" cy="55" r="2.5" fill="#ff6f3c"/>
+                    </g>
+                    
+                    <!-- Neck -->
+                    <rect x="140" y="100" width="20" height="30" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                    
+                    <!-- Torso -->
+                    <g id="torso" class="body-part">
+                        <ellipse cx="150" cy="200" rx="60" ry="80" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                        
+                        <!-- Heart -->
+                        <g id="heart" class="body-part">
+                            <path d="M 140 170 C 135 160, 125 160, 125 170 C 125 180, 140 190, 140 190 C 140 190, 155 180, 155 170 C 155 160, 145 160, 140 170" 
+                                  fill="#ff6f3c" stroke="#d84315" stroke-width="1.5"/>
+                            <circle cx="132" cy="172" r="1.5" fill="#ffccbc" opacity="0.7"/>
+                        </g>
+                        
+                        <!-- Ribs -->
+                        <path d="M 120 180 Q 150 185 180 180" stroke="#0288d1" stroke-width="1" fill="none" opacity="0.6"/>
+                        <path d="M 115 195 Q 150 200 185 195" stroke="#0288d1" stroke-width="1" fill="none" opacity="0.6"/>
+                        <path d="M 120 210 Q 150 215 180 210" stroke="#0288d1" stroke-width="1" fill="none" opacity="0.6"/>
+                        
+                        <!-- Stomach -->
+                        <g id="stomach" class="body-part">
+                            <ellipse cx="150" cy="245" rx="35" ry="30" fill="#4fc3f7" stroke="#0288d1" stroke-width="2" opacity="0.7"/>
+                            <path d="M 130 240 Q 150 245 170 240" stroke="#0288d1" stroke-width="1" fill="none"/>
+                            <path d="M 130 250 Q 150 255 170 250" stroke="#0288d1" stroke-width="1" fill="none"/>
+                        </g>
+                    </g>
+                    
+                    <!-- Left Arm -->
+                    <g id="left_arm" class="body-part">
+                        <path d="M 90 160 L 70 220 L 65 280" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                        <circle cx="65" cy="280" r="12" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                    </g>
+                    
+                    <!-- Right Arm -->
+                    <g id="right_arm" class="body-part">
+                        <path d="M 210 160 L 230 220 L 235 280" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                        <circle cx="235" cy="280" r="12" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                    </g>
+                    
+                    <!-- Left Leg -->
+                    <g id="left_leg" class="body-part">
+                        <path d="M 120 280 L 110 380 L 105 460" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                        <ellipse cx="105" cy="475" rx="15" ry="8" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                    </g>
+                    
+                    <!-- Right Leg -->
+                    <g id="right_leg" class="body-part">
+                        <path d="M 180 280 L 190 380 L 195 460" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                        <ellipse cx="195" cy="475" rx="15" ry="8" fill="url(#bodyGradient)" stroke="#1565c0" stroke-width="2"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="info-panel">
+                <div class="info-content" id="infoContent">
+                    <h2 id="infoTitle">Efectos del Estrés en la Cabeza</h2>
+                    <ul id="infoList">
+                        <li>Dolor de cabeza: El estrés causa tensión muscular en el cuello y hombros que se irradia a la cabeza, provocando dolores de cabeza tensionales</li>
+                        <li>Ansiedad y depresión: El estrés puede descontrolar la respuesta natural del cuerpo, llevando a la aparición de ansiedad y depresión</li>
+                        <li>Problemas de sueño: El estrés puede provocar insomnio o un sueño interrumpido, dificultando el descanso adecuado</li>
+                        <li>Fatiga: La tensión y el desgaste emocional y físico del estrés conllevan una sensación general de fatiga</li>
+                    </ul>
+                </div>
+                <button class="test-button" onclick="showTest()">¡Haz el Test de Estrés!</button>
+            </div>
+        </div>
+
+        <div class="test-section" id="testSection">
+            <h2>Test de Nivel de Estrés</h2>
+            <form id="stressTest">
+                <div class="question">
+                    <h3>1. ¿Con qué frecuencia te sientes abrumado/a?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q1a" name="q1" value="0" required>
+                            <label for="q1a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1b" name="q1" value="1">
+                            <label for="q1b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1c" name="q1" value="2">
+                            <label for="q1c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1d" name="q1" value="3">
+                            <label for="q1d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1e" name="q1" value="4">
+                            <label for="q1e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>2. ¿Tienes dificultad para concentrarte en tus estudios o tareas?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q2a" name="q2" value="0" required>
+                            <label for="q2a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2b" name="q2" value="1">
+                            <label for="q2b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2c" name="q2" value="2">
+                            <label for="q2c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2d" name="q2" value="3">
+                            <label for="q2d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2e" name="q2" value="4">
+                            <label for="q2e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>3. ¿Experimentas dolores de cabeza o tensión muscular?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q3a" name="q3" value="0" required>
+                            <label for="q3a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3b" name="q3" value="1">
+                            <label for="q3b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3c" name="q3" value="2">
+                            <label for="q3c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3d" name="q3" value="3">
+                            <label for="q3d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3e" name="q3" value="4">
+                            <label for="q3e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>4. ¿Tienes problemas para dormir o te despiertas cansado/a?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q4a" name="q4" value="0" required>
+                            <label for="q4a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4b" name="q4" value="1">
+                            <label for="q4b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4c" name="q4" value="2">
+                            <label for="q4c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4d" name="q4" value="3">
+                            <label for="q4d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4e" name="q4" value="4">
+                            <label for="q4e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>5. ¿Te sientes irritable o de mal humor sin razón aparente?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q5a" name="q5" value="0" required>
+                            <label for="q5a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5b" name="q5" value="1">
+                            <label for="q5b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5c" name="q5" value="2">
+                            <label for="q5c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5d" name="q5" value="3">
+                            <label for="q5d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5e" name="q5" value="4">
+                            <label for="q5e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>6. ¿Experimentas problemas digestivos o malestar estomacal?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q6a" name="q6" value="0" required>
+                            <label for="q6a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6b" name="q6" value="1">
+                            <label for="q6b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6c" name="q6" value="2">
+                            <label for="q6c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6d" name="q6" value="3">
+                            <label for="q6d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6e" name="q6" value="4">
+                            <label for="q6e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>7. ¿Sientes que tienes poco control sobre las cosas importantes de tu vida?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q7a" name="q7" value="0" required>
+                            <label for="q7a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q7b" name="q7" value="1">
+                            <label for="q7b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q7c" name="q7" value="2">
+                            <label for="q7c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q7d" name="q7" value="3">
+                            <label for="q7d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q7e" name="q7" value="4">
+                            <label for="q7e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>8. ¿Comes en exceso o pierdes el apetito debido a la presión?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q8a" name="q8" value="0" required>
+                            <label for="q8a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q8b" name="q8" value="1">
+                            <label for="q8b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q8c" name="q8" value="2">
+                            <label for="q8c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q8d" name="q8" value="3">
+                            <label for="q8d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q8e" name="q8" value="4">
+                            <label for="q8e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>9. ¿Te sientes ansioso/a o preocupado/a la mayor parte del tiempo?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q9a" name="q9" value="0" required>
+                            <label for="q9a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q9b" name="q9" value="1">
+                            <label for="q9b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q9c" name="q9" value="2">
+                            <label for="q9c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q9d" name="q9" value="3">
+                            <label for="q9d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q9e" name="q9" value="4">
+                            <label for="q9e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>10. ¿Sientes que las demandas académicas o personales superan tu capacidad?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q10a" name="q10" value="0" required>
+                            <label for="q10a">Nunca</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q10b" name="q10" value="1">
+                            <label for="q10b">Rara vez</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q10c" name="q10" value="2">
+                            <label for="q10c">A veces</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q10d" name="q10" value="3">
+                            <label for="q10d">Frecuentemente</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q10e" name="q10" value="4">
+                            <label for="q10e">Casi siempre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">Ver Resultados</button>
+            </form>
+
+            <div class="result-container" id="resultContainer">
+                <h3>Tus Resultados</h3>
+                <div class="result-score" id="resultScore"></div>
+                <div class="result-level" id="resultLevel"></div>
+                <div class="result-message" id="resultMessage"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 Healthy Minds University App</p>
+        </footer>
+    </div>
+
+    <script>
+        // Body parts information
+        const bodyInfo = {
+            head: {
+                title: "Efectos del Estrés en la Cabeza",
+                effects: [
+                    "Dolor de cabeza: El estrés causa tensión muscular en el cuello y hombros que se irradia a la cabeza, provocando dolores de cabeza tensionales",
+                    "Ansiedad y depresión: El estrés puede descontrolar la respuesta natural del cuerpo, llevando a la aparición de ansiedad y depresión",
+                    "Problemas de sueño: El estrés puede provocar insomnio o un sueño interrumpido, dificultando el descanso adecuado",
+                    "Fatiga: La tensión y el desgaste emocional y físico del estrés conllevan una sensación general de fatiga"
+                ]
+            },
+            torso: {
+                title: "Efectos del Estrés en el Torso",
+                effects: [
+                    "Sistema cardiovascular: El estrés crónico puede llevar a presión arterial alta, aumentando el riesgo de ataques cardíacos y accidentes cerebrovasculares",
+                    "Sistema inmune: El exceso de cortisol debilita la respuesta inmune, haciendo al cuerpo más vulnerable a resfriados, gripe y otras enfermedades",
+                    "Problemas respiratorios: El estrés puede causar respiración rápida y superficial, empeorando condiciones como el asma",
+                    "Tensión muscular: El estrés prolongado causa rigidez y dolor en la espalda y el pecho"
+                ]
+            },
+            heart: {
+                title: "Efectos del Estrés en el Corazón",
+                effects: [
+                    "Aumento de la presión arterial: El estrés hace que el corazón trabaje más fuerte, elevando la presión sanguínea",
+                    "Riesgo de enfermedades cardíacas: El estrés crónico aumenta significativamente el riesgo de problemas cardiovasculares",
+                    "Palpitaciones: El estrés puede causar latidos cardíacos irregulares o acelerados",
+                    "Inflamación: El estrés prolongado puede causar inflamación en el sistema cardiovascular"
+                ]
+            },
+            stomach: {
+                title: "Efectos del Estrés en el Sistema Digestivo",
+                effects: [
+                    "Problemas digestivos: El estrés prolongado afecta el sistema digestivo, causando diversas molestias estomacales",
+                    "Náuseas y dolor abdominal: El estrés puede provocar malestar estomacal constante",
+                    "Síndrome del intestino irritable: El estrés puede desencadenar o empeorar esta condición",
+                    "Cambios en el apetito: Puede causar pérdida de apetito o comer en exceso, contribuyendo al aumento de peso"
+                ]
+            },
+            left_arm: {
+                title: "Efectos del Estrés en los Brazos",
+                effects: [
+                    "Tensión muscular: El estrés causa rigidez y dolor en los músculos de los brazos y hombros",
+                    "Temblores: El estrés puede provocar temblores involuntarios en las extremidades",
+                    "Debilidad: La fatiga relacionada con el estrés puede causar sensación de debilidad en los brazos",
+                    "Entumecimiento: El estrés puede causar sensaciones de hormigueo o entumecimiento"
+                ]
+            },
+            right_arm: {
+                title: "Efectos del Estrés en los Brazos",
+                effects: [
+                    "Tensión muscular: El estrés causa rigidez y dolor en los músculos de los brazos y hombros",
+                    "Temblores: El estrés puede provocar temblores involuntarios en las extremidades",
+                    "Debilidad: La fatiga relacionada con el estrés puede causar sensación de debilidad en los brazos",
+                    "Entumecimiento: El estrés puede causar sensaciones de hormigueo o entumecimiento"
+                ]
+            },
+            left_leg: {
+                title: "Efectos del Estrés en las Piernas",
+                effects: [
+                    "Tensión muscular: El estrés puede causar rigidez y calambres en las piernas",
+                    "Síndrome de piernas inquietas: El estrés puede empeorar esta condición que dificulta el descanso",
+                    "Debilidad y fatiga: El estrés prolongado puede causar sensación de pesadez en las piernas",
+                    "Problemas circulatorios: El estrés puede afectar la circulación sanguínea en las extremidades"
+                ]
+            },
+            right_leg: {
+                title: "Efectos del Estrés en las Piernas",
+                effects: [
+                    "Tensión muscular: El estrés puede causar rigidez y calambres en las piernas",
+                    "Síndrome de piernas inquietas: El estrés puede empeorar esta condición que dificulta el descanso",
+                    "Debilidad y fatiga: El estrés prolongado puede causar sensación de pesadez en las piernas",
+                    "Problemas circulatorios: El estrés puede afectar la circulación sanguínea en las extremidades"
+                ]
+            }
+        };
+
+        // Initialize with head selected
+        let currentSelection = 'head';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set head as initially selected
+            document.getElementById('head').classList.add('selected');
+            
+            // Add click listeners to all body parts
+            const bodyParts = document.querySelectorAll('.body-part');
+            bodyParts.forEach(part => {
+                part.addEventListener('click', function() {
+                    selectBodyPart(this.id);
+                });
+            });
+        });
+
+        function selectBodyPart(partId) {
+            // Remove selection from previous part
+            const previousSelected = document.querySelector('.body-part.selected');
+            if (previousSelected) {
+                previousSelected.classList.remove('selected');
+            }
+            
+            // Add selection to clicked part
+            const selectedPart = document.getElementById(partId);
+            selectedPart.classList.add('selected');
+            
+            // Update info panel
+            updateInfoPanel(partId);
+            currentSelection = partId;
+        }
+
+        function updateInfoPanel(partId) {
+            const info = bodyInfo[partId];
+            if (!info) return;
+            
+            const titleElement = document.getElementById('infoTitle');
+            const listElement = document.getElementById('infoList');
+            
+            // Update title with animation
+            titleElement.style.opacity = '0';
+            setTimeout(() => {
+                titleElement.textContent = info.title;
+                titleElement.style.opacity = '1';
+            }, 150);
+            
+            // Update list with animation
+            listElement.style.opacity = '0';
+            setTimeout(() => {
+                listElement.innerHTML = '';
+                info.effects.forEach(effect => {
+                    const li = document.createElement('li');
+                    li.textContent = effect;
+                    listElement.appendChild(li);
+                });
+                listElement.style.opacity = '1';
+            }, 150);
+        }
+
+        function showTest() {
+            const testSection = document.getElementById('testSection');
+            testSection.classList.add('active');
+            testSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Handle test submission
+        document.getElementById('stressTest').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let totalScore = 0;
+            
+            // Calculate total score
+            for (let i = 1; i <= 10; i++) {
+                const answer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (answer) {
+                    totalScore += parseInt(answer.value);
+                }
+            }
+            
+            // Determine stress level and message
+            let level, message, levelClass;
+            
+            if (totalScore <= 13) {
+                level = "Nivel de Estrés: BAJO ✓";
+                message = "¡Excelente! Manejas bien el estrés. Continúa con tus hábitos saludables, mantén una rutina de ejercicio regular y técnicas de relajación para mantener este nivel positivo.";
+                levelClass = "low";
+            } else if (totalScore <= 26) {
+                level = "Nivel de Estrés: MODERADO ⚠";
+                message = "Tu nivel de estrés es manejable pero requiere atención. Te recomendamos practicar técnicas de respiración, establecer límites saludables, dormir bien y considerar hablar con amigos o un consejero universitario.";
+                levelClass = "moderate";
+            } else {
+                level = "Nivel de Estrés: ALTO ⚠⚠";
+                message = "Tu nivel de estrés es alto y puede afectar tu salud. Es importante que busques apoyo profesional. Contacta al servicio de consejería de tu universidad, practica autocuidado diario y no dudes en pedir ayuda a personas de confianza.";
+                levelClass = "high";
+            }
+            
+            // Display results
+            document.getElementById('resultScore').textContent = `${totalScore} / 40 puntos`;
+            document.getElementById('resultLevel').textContent = level;
+            document.getElementById('resultLevel').className = `result-level ${levelClass}`;
+            document.getElementById('resultMessage').textContent = message;
+            
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.classList.add('show');
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    </script>
+</body>
+</html>
