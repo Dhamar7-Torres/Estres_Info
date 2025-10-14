@@ -239,29 +239,13 @@ function updateInfoPanel(partId) {
     }, 150);
 }
 
-// Funcion para mostrar/ocultar la seccion del test
-window.showTestSection = function() {
-    const testSection = document.getElementById('testSection');
-
-    // Toggle del test section
-    if (testSection.classList.contains('active')) {
-        // Cerrar test
-        testSection.classList.remove('active');
-    } else {
-        // Abrir test
-        testSection.classList.add('active');
-        // Resetear formulario y ocultar resultados previos
-        document.getElementById('resultContainer').style.display = 'none';
-        document.getElementById('stressTest').reset();
+// Funcion para mostrar/ocultar el test
+function toggleTest() {
+    const testPanel = document.getElementById('testPanel');
+    if (testPanel) {
+        testPanel.classList.toggle('active');
     }
-};
-
-// Funcion para mostrar/ocultar la seccion de estrategias (ya no se usa pero la mantenemos)
-window.showStrategiesSection = function() {
-    // Las estrategias ahora siempre estan visibles
-    // Esta funcion se mantiene por compatibilidad
-    return;
-};
+}
 
 // Funcion para manejar el envio del test
 function handleTestSubmit(e) {
@@ -283,7 +267,7 @@ function handleTestSubmit(e) {
     // Determinar nivel de estres y mensaje
     let level, message;
     
-    const strategyLink = ' <a href="javascript:void(0)" onclick="showStrategiesSection()" class="strategy-link">Consulta las estrategias completas de autocuidado.</a>';
+    const strategyLink = ' Consulta las estrategias completas de autocuidado en la seccion inferior.';
 
     if (totalScore <= 13) {
         level = "Nivel de Estres: BAJO";

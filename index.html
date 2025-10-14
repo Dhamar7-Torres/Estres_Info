@@ -37,7 +37,7 @@
         </header>
 
         <div class="main-content">
-            <!-- VERTICAL: SVG del cuerpo -->
+            <!-- COLUMNA 1: SVG del cuerpo -->
             <div class="svg-container">
                 <svg id="bodySvg" viewBox="0 0 300 550" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -153,7 +153,7 @@
                 </svg>
             </div>
 
-            <!-- Panel de información -->
+            <!-- COLUMNA 2: Panel de información -->
             <div class="info-panel">
                 <div class="info-content" id="infoContent">
                     <div id="effectsContent">
@@ -166,272 +166,123 @@
                         <ul id="strategiesList"></ul>
                     </div>
                 </div>
-                <button class="test-button" onclick="showTestSection()">HACER TEST</button>
             </div>
-        </div>
 
-            <!-- Segunda fila: TEST (se despliega) -->
-            <div class="test-section" id="testSection">
-            <h2>Test de Nivel de Estrés</h2>
-            <div class="test-scroll">
-                <form id="stressTest">
+            <!-- COLUMNA 3: Test con botón -->
+            <div class="test-column">
+                <button class="test-toggle-button" onclick="toggleTest()">HACER TEST</button>
+                
+                <div class="test-panel" id="testPanel">
+                    <h2>Test de Nivel de Estrés</h2>
+                    <div class="test-content">
+                    <form id="stressTest">
                     <div class="question">
                         <h3>1. ¿Con qué frecuencia te sientes abrumado/a?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q1a" name="q1" value="0" required>
-                                <label for="q1a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q1b" name="q1" value="1">
-                                <label for="q1b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q1c" name="q1" value="2">
-                                <label for="q1c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q1d" name="q1" value="3">
-                                <label for="q1d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q1e" name="q1" value="4">
-                                <label for="q1e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q1a" name="q1" value="0" required><label for="q1a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q1b" name="q1" value="1"><label for="q1b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q1c" name="q1" value="2"><label for="q1c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q1d" name="q1" value="3"><label for="q1d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q1e" name="q1" value="4"><label for="q1e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>2. ¿Tienes dificultad para concentrarte en tus estudios o tareas?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q2a" name="q2" value="0" required>
-                                <label for="q2a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q2b" name="q2" value="1">
-                                <label for="q2b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q2c" name="q2" value="2">
-                                <label for="q2c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q2d" name="q2" value="3">
-                                <label for="q2d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q2e" name="q2" value="4">
-                                <label for="q2e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q2a" name="q2" value="0" required><label for="q2a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q2b" name="q2" value="1"><label for="q2b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q2c" name="q2" value="2"><label for="q2c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q2d" name="q2" value="3"><label for="q2d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q2e" name="q2" value="4"><label for="q2e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>3. ¿Experimentas dolores de cabeza o tensión muscular?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q3a" name="q3" value="0" required>
-                                <label for="q3a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q3b" name="q3" value="1">
-                                <label for="q3b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q3c" name="q3" value="2">
-                                <label for="q3c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q3d" name="q3" value="3">
-                                <label for="q3d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q3e" name="q3" value="4">
-                                <label for="q3e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q3a" name="q3" value="0" required><label for="q3a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q3b" name="q3" value="1"><label for="q3b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q3c" name="q3" value="2"><label for="q3c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q3d" name="q3" value="3"><label for="q3d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q3e" name="q3" value="4"><label for="q3e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>4. ¿Tienes problemas para dormir o te despiertas cansado/a?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q4a" name="q4" value="0" required>
-                                <label for="q4a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q4b" name="q4" value="1">
-                                <label for="q4b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q4c" name="q4" value="2">
-                                <label for="q4c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q4d" name="q4" value="3">
-                                <label for="q4d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q4e" name="q4" value="4">
-                                <label for="q4e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q4a" name="q4" value="0" required><label for="q4a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q4b" name="q4" value="1"><label for="q4b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q4c" name="q4" value="2"><label for="q4c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q4d" name="q4" value="3"><label for="q4d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q4e" name="q4" value="4"><label for="q4e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>5. ¿Te sientes irritable o de mal humor sin razón aparente?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q5a" name="q5" value="0" required>
-                                <label for="q5a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q5b" name="q5" value="1">
-                                <label for="q5b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q5c" name="q5" value="2">
-                                <label for="q5c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q5d" name="q5" value="3">
-                                <label for="q5d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q5e" name="q5" value="4">
-                                <label for="q5e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q5a" name="q5" value="0" required><label for="q5a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q5b" name="q5" value="1"><label for="q5b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q5c" name="q5" value="2"><label for="q5c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q5d" name="q5" value="3"><label for="q5d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q5e" name="q5" value="4"><label for="q5e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>6. ¿Experimentas problemas digestivos o malestar estomacal?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q6a" name="q6" value="0" required>
-                                <label for="q6a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q6b" name="q6" value="1">
-                                <label for="q6b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q6c" name="q6" value="2">
-                                <label for="q6c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q6d" name="q6" value="3">
-                                <label for="q6d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q6e" name="q6" value="4">
-                                <label for="q6e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q6a" name="q6" value="0" required><label for="q6a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q6b" name="q6" value="1"><label for="q6b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q6c" name="q6" value="2"><label for="q6c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q6d" name="q6" value="3"><label for="q6d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q6e" name="q6" value="4"><label for="q6e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>7. ¿Sientes que tienes poco control sobre las cosas importantes de tu vida?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q7a" name="q7" value="0" required>
-                                <label for="q7a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q7b" name="q7" value="1">
-                                <label for="q7b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q7c" name="q7" value="2">
-                                <label for="q7c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q7d" name="q7" value="3">
-                                <label for="q7d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q7e" name="q7" value="4">
-                                <label for="q7e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q7a" name="q7" value="0" required><label for="q7a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q7b" name="q7" value="1"><label for="q7b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q7c" name="q7" value="2"><label for="q7c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q7d" name="q7" value="3"><label for="q7d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q7e" name="q7" value="4"><label for="q7e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>8. ¿Comes en exceso o pierdes el apetito debido a la presión?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q8a" name="q8" value="0" required>
-                                <label for="q8a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q8b" name="q8" value="1">
-                                <label for="q8b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q8c" name="q8" value="2">
-                                <label for="q8c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q8d" name="q8" value="3">
-                                <label for="q8d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q8e" name="q8" value="4">
-                                <label for="q8e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q8a" name="q8" value="0" required><label for="q8a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q8b" name="q8" value="1"><label for="q8b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q8c" name="q8" value="2"><label for="q8c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q8d" name="q8" value="3"><label for="q8d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q8e" name="q8" value="4"><label for="q8e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>9. ¿Te sientes ansioso/a o preocupado/a la mayor parte del tiempo?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q9a" name="q9" value="0" required>
-                                <label for="q9a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q9b" name="q9" value="1">
-                                <label for="q9b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q9c" name="q9" value="2">
-                                <label for="q9c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q9d" name="q9" value="3">
-                                <label for="q9d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q9e" name="q9" value="4">
-                                <label for="q9e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q9a" name="q9" value="0" required><label for="q9a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q9b" name="q9" value="1"><label for="q9b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q9c" name="q9" value="2"><label for="q9c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q9d" name="q9" value="3"><label for="q9d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q9e" name="q9" value="4"><label for="q9e">Casi siempre</label></div>
                         </div>
                     </div>
 
                     <div class="question">
                         <h3>10. ¿Sientes que las demandas académicas o personales superan tu capacidad?</h3>
                         <div class="options">
-                            <div class="option">
-                                <input type="radio" id="q10a" name="q10" value="0" required>
-                                <label for="q10a">Nunca</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q10b" name="q10" value="1">
-                                <label for="q10b">Rara vez</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q10c" name="q10" value="2">
-                                <label for="q10c">A veces</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q10d" name="q10" value="3">
-                                <label for="q10d">Frecuentemente</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" id="q10e" name="q10" value="4">
-                                <label for="q10e">Casi siempre</label>
-                            </div>
+                            <div class="option"><input type="radio" id="q10a" name="q10" value="0" required><label for="q10a">Nunca</label></div>
+                            <div class="option"><input type="radio" id="q10b" name="q10" value="1"><label for="q10b">Rara vez</label></div>
+                            <div class="option"><input type="radio" id="q10c" name="q10" value="2"><label for="q10c">A veces</label></div>
+                            <div class="option"><input type="radio" id="q10d" name="q10" value="3"><label for="q10d">Frecuentemente</label></div>
+                            <div class="option"><input type="radio" id="q10e" name="q10" value="4"><label for="q10e">Casi siempre</label></div>
                         </div>
                     </div>
 
@@ -444,10 +295,12 @@
                         <div class="result-message" id="resultMessage"></div>
                     </div>
                 </form>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Sección de estrategias - SIEMPRE VISIBLE -->
+        <!-- ESTRATEGIAS - SIEMPRE VISIBLE -->
         <section class="strategies-section">
             <h2>Estrategias y Recursos para Fortalecer tu Resiliencia</h2>
             <p class="section-description">Aplica estas técnicas en tu vida diaria para mejorar tu bienestar mental y físico a largo plazo.</p>
@@ -477,6 +330,23 @@
                         <li>Establece un horario de sueño constante.</li>
                         <li>Evita pantallas (móvil, laptop) una hora antes de dormir.</li>
                     </ul>
+                </div>
+
+                <div class="strategy-card">
+                    <h3>Ejercicio y Movimiento</h3>
+                    <p>La actividad física libera endorfinas y ayuda a "quemar" la adrenalina y el cortisol acumulado.</p>
+                    <ul>
+                        <li>Integra al menos 30 minutos de actividad diaria.</li>
+                        <li>Practica estiramientos para liberar la tensión muscular.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
                 </div>
 
                 <div class="strategy-card">
